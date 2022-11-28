@@ -1,12 +1,15 @@
 class Frame {
 
-    int[] pins = new(){null, null};
+    int?[] pins = new int?[2]; //(){null, null};
     bool completed = false;
 
-    public void Add(int pins) {
+    public bool Add(int pins) {
 
-        if (pins[0] != null) pins[0] = pins;
-        if (Current >= 10) completed = true;
+        Console.WriteLine(pins);
+        if (pins != null) pins = pins;
+        if (Current() >= 10) completed = true;
+
+        return completed;
     }
 
     public int Current() {
