@@ -1,18 +1,38 @@
-class Frame {
+class Frame
+{
+    public int? firstRoll;
 
-    int?[] pins = new int?[2]; //(){null, null};
-    bool completed = false;
+    public int? secondRoll;
 
-    public bool Add(int pins) {
+    public bool completed = false;
 
-        Console.WriteLine(pins);
-        if (pins != null) pins = pins;
-        if (Current() >= 10) completed = true;
+    public bool Add(int pins)
+    {
+        if (this.firstRoll == null)
+            this.firstRoll = pins;
+        else
+        {
+            if (firstRoll + pins >= 10) this.secondRoll = 10;
+            else this.secondRoll = pins;
+            this.completed = true;
+        }
 
-        return completed;
+        if (Current() >= 10 || this.secondRoll != null)
+        {
+            this.completed = true;
+        }
+        return this.completed;
     }
 
-    public int Current() {
-        return pins[0] ?? 0 + pins[1] ?? 0;
+    public int Current()
+    {
+        return (this.firstRoll ?? 0) + (this.secondRoll ?? 0);
+    }
+
+    public int BonusRolls() {
+        
+        if (Current() == 10 && secondRoll == null) return 2;
+        else if (Current() == 10) return 1;
+        else return 0;
     }
 }
