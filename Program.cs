@@ -3,16 +3,15 @@
 
 
 Game game = new();
-/*
 
-for (int i = 0; i < 8; i++)
-{
-    game.Roll(4);
-}
-*/
 
-   game.Roll(10);
-   game.Roll(5);
+    for (int i = 0; i < 30; i++)
+    {
 
-   game.Roll(4);
+        //bool _continue = game.Roll(5);
+        if (!game.Roll(10)) break; 
+        
+    }
+
+
 Console.WriteLine(game.Score());
